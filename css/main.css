@@ -1,0 +1,9 @@
+.slot {
+  width: 100px;
+  height: 100px; }
+  .slot.vessel {
+    background: red; }
+  .slot.filter {
+    background: green; }
+  .slot.ingredient {
+    background: blue; }

@@ -1,0 +1,14 @@
+.slot {
+	width: 100px;
+	height: 100px;
+
+	&.vessel {
+		background: red;
+	}
+	&.filter {
+		background: green;
+	}
+	&.ingredient {
+		background: blue;
+	}
+}

@@ -1,33 +1,44 @@
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-function commonElement(array) {
-	for (var i = 0; i < array.length - 1 ; i++) {
-		if (array[i] !== array[i + 1]) {
-			return null
+var Util = {
+	'getRandomInt': function(min, max) {
+		return Math.floor(Math.random() * (max - min)) + min;
+	},
+	'commonElement': function(array) {
+		for (var i = 0; i < array.length - 1 ; i++) {
+			if (array[i] !== array[i + 1]) {
+				return null
+			}
 		}
+		return array[0];
 	}
-	return array[0];
-}
+};
+
+
+var DRINK_TYPES = ['coffee', 'tea', 'espresso'];
 
 var slotmachineApp = angular.module('slotmachineApp', []);
 
 slotmachineApp.controller('SlotMachineCtrl', function() {
-	this.DRINK_TYPES = ['coffee', 'tea', 'espresso'];
 
-	this.slots = [];
+	this.slots = {
+		'vessel': new Slot('vessel'),
+		'filter': new Slot('filter'),
+		'ingredient': new Slot('ingredient')
+	};
+
 	this.currentDrink = null;
 
 	this.startSlots = function() {
-		this.slots = [];
-		for (var i = 0; i < 3; i++) {
-			this.slots.push(getRandomInt(0, 3));
+		for (var partType in this.slots) {
+			this.slots[partType].pickDrink();
 		};
 	};
 
 	this.setDrinkIfAny = function() {
-		this.currentDrink = commonElement(this.slots);
+		var temp = [];
+		for (var partType in this.slots) {
+			temp.push(this.slots[partType].currentDrink);
+		}
+		this.currentDrink = Util.commonElement(temp);
 	};
 
 	this.doTheSpin = function() {
@@ -42,10 +53,25 @@ slotmachineApp.controller('SlotMachineCtrl', function() {
 });
 
 
-var Slot = function() {
+var Slot = function(partType) {
+	this.partType = partType;
 	this.currentDrink = null;
+	this.isAnimating = false;
+	this.bgPosition = 0;
 
 	this.pickDrink = function() {
-		this.currentDrink = getRandomInt(0, 3);
-	}
+		this.currentDrink = DRINK_TYPES[Util.getRandomInt(0, 3)];
+	};
+
+	this.animateSlot = function() {
+		this.isAnimating = true;
+		this.animation = setInterval(function() {
+			this.bgPosition += 10;
+		}, 100)
+	};
+
+	this.stopSlot = function() {
+		clearInterval(this.animation);
+		this.isAnimating = false;
+	};
 };

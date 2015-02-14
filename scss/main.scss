@@ -3,14 +3,15 @@
 	height: 100px;
 	color: white;
 	font-size: 18px;
+	border: 1px solid black;
 
-	&.vessel {
-		background: red;
+	&.coffee {
+		background: brown;
 	}
-	&.filter {
+	&.tea {
 		background: green;
 	}
-	&.ingredient {
-		background: blue;
+	&.espresso {
+		background: goldenrod;
 	}
 }

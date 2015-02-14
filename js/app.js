@@ -1,5 +1,3 @@
-DRINK_TYPES = ['coffee', 'tea', 'espresso'];
-
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -16,8 +14,9 @@ function commonElement(array) {
 var slotmachineApp = angular.module('slotmachineApp', []);
 
 slotmachineApp.controller('SlotMachineCtrl', function() {
+	this.DRINK_TYPES = ['coffee', 'tea', 'espresso'];
+
 	this.slots = [];
-	this.slotResults = [];
 	this.currentDrink = null;
 
 	this.startSlots = function() {
@@ -29,12 +28,17 @@ slotmachineApp.controller('SlotMachineCtrl', function() {
 
 	this.setDrinkIfAny = function() {
 		this.currentDrink = commonElement(this.slots);
-	}
+	};
 
 	this.doTheSpin = function() {
 		this.startSlots();
 		this.setDrinkIfAny();
-	}
+	};
+
+	this.showDrinkForSlot = function(index) {
+		var slotDrink = this.slots[index];
+		return this.DRINK_TYPES[slotDrink];
+	};
 });
 
 

@@ -2,12 +2,13 @@
   width: 100px;
   height: 100px;
   color: white;
-  font-size: 18px; }
-  .slot.vessel {
-    background: red; }
-  .slot.filter {
+  font-size: 18px;
+  border: 1px solid black; }
+  .slot.coffee {
+    background: brown; }
+  .slot.tea {
     background: green; }
-  .slot.ingredient {
-    background: blue; }
+  .slot.espresso {
+    background: goldenrod; }
 
 /*# sourceMappingURL=main.css.map */

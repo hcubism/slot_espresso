@@ -17,15 +17,15 @@
 <body>
 	<div class="slot-machine" ng-controller="SlotMachineCtrl as slotmachine">
 		<p>{{slotmachine.currentDrink}}</p>
-		<div class="slot vessel">
+		<div class="slot vessel {{slotmachine.showDrinkForSlot(0)}}">
 			{{slotmachine.slots[0]}}
 		</div>
 
-		<div class="slot filter">
+		<div class="slot filter {{slotmachine.showDrinkForSlot(1)}}">
 			{{slotmachine.slots[1]}}
 		</div>
 
-		<div class="slot ingredient">
+		<div class="slot ingredient {{slotmachine.showDrinkForSlot(2)}}">
 			{{slotmachine.slots[2]}}
 		</div>
 

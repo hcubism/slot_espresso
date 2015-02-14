@@ -1,5 +1,3 @@
-
-
 DRINK_TYPES = ['coffee', 'tea', 'espresso'];
 
 function getRandomInt(min, max) {
@@ -15,6 +13,31 @@ function commonElement(array) {
 	return array[0];
 }
 
+var slotmachineApp = angular.module('slotmachineApp', []);
+
+slotmachineApp.controller('SlotMachineCtrl', function() {
+	this.slots = [];
+	this.slotResults = [];
+	this.currentDrink = null;
+
+	this.startSlots = function() {
+		this.slots = [];
+		for (var i = 0; i < 3; i++) {
+			this.slots.push(getRandomInt(0, 3));
+		};
+	};
+
+	this.setDrinkIfAny = function() {
+		this.currentDrink = commonElement(this.slots);
+	}
+
+	this.doTheSpin = function() {
+		this.startSlots();
+		this.setDrinkIfAny();
+	}
+});
+
+
 var Slot = function() {
 	this.currentDrink = null;
 
@@ -22,29 +45,3 @@ var Slot = function() {
 		this.currentDrink = getRandomInt(0, 3);
 	}
 };
-
-var SlotMachine = function() {
-	this.slots = [];
-	this.slotResults = [];
-	this.button = null;
-	this.currentDrink = null;
-
-	this.initializeMachine = function(button) {
-		for (var i = 0; i < 3; i++) {
-			this.slots.append(new Slot());
-		}
-		this.button = button;
-	};
-
-	this.startSlots = function() {
-		$(this.slots).each(function(i) {
-			slotResults.push($(this).pickDrink());
-		});
-	};
-
-	this.checkResults = function() {
-		this.currentDrink = commonElement(this.slotResults);
-	}
-};
-
-var slot = new SlotMachine();

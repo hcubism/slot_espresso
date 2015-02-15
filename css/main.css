@@ -200,7 +200,7 @@ ul.no-style-ul {
   padding: 0; }
 
 .slot-machine {
-  width: 300px;
+  width: 258px;
   margin: 200px auto; }
 
 .slot-area {
@@ -211,7 +211,8 @@ ul.no-style-ul {
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
-  height: 100px; }
+  height: 86px;
+  background: grey; }
 
 .slot {
   -webkit-box-flex: 1;
@@ -247,12 +248,16 @@ ul.no-style-ul {
   -ms-flex: 1;
   flex: 1;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  background: url("../reel_normal.png") repeat-y 0 0;
+  -webkit-transition: background-position 0.5s ease-in;
+  -moz-transition: background-position 0.5s ease-in;
+  transition: background-position 0.5s linear; }
   .slot-inner.coffee {
-    background: brown; }
+    background-color: brown; }
   .slot-inner.tea {
-    background: green; }
+    background-color: green; }
   .slot-inner.espresso {
-    background: goldenrod; }
+    background-color: goldenrod; }
 
 /*# sourceMappingURL=main.css.map */

@@ -17,7 +17,7 @@ var DRINK_TYPES = ['coffee', 'tea', 'espresso'];
 
 var slotmachineApp = angular.module('slotmachineApp', []);
 
-slotmachineApp.controller('SlotMachineCtrl', function() {
+slotmachineApp.controller('SlotMachineCtrl', ['$interval', '$timeout', function($interval, $timeout) {
 
 	this.slots = {
 		'vessel': new Slot('vessel'),
@@ -29,7 +29,8 @@ slotmachineApp.controller('SlotMachineCtrl', function() {
 
 	this.startSlots = function() {
 		for (var partType in this.slots) {
-			this.slots[partType].pickDrink();
+			var slot = this.slots[partType];
+			slot.animateSlot($interval, $timeout);
 		};
 	};
 
@@ -50,28 +51,38 @@ slotmachineApp.controller('SlotMachineCtrl', function() {
 		var slotDrink = this.slots[index];
 		return this.DRINK_TYPES[slotDrink];
 	};
-});
+}]);
 
 
 var Slot = function(partType) {
 	this.partType = partType;
 	this.currentDrink = null;
+	this.currentDrinkIndex = null;
 	this.isAnimating = false;
 	this.bgPosition = 0;
 
 	this.pickDrink = function() {
-		this.currentDrink = DRINK_TYPES[Util.getRandomInt(0, 3)];
+		var drinkIndex = Util.getRandomInt(0, 3);
+		this.currentDrink = DRINK_TYPES[drinkIndex];
+		this.currentDrinkIndex = drinkIndex;
 	};
 
-	this.animateSlot = function() {
+	this.animateSlot = function(ngInterval, timeout) {
 		this.isAnimating = true;
-		this.animation = setInterval(function() {
-			this.bgPosition += 10;
-		}, 100)
+		var slot = this;
+		this.animation = ngInterval(function() {
+			slot.bgPosition += 100;
+		}, 100);
+		this.pickDrink();
+		timeout(function() {
+			ngInterval.cancel(slot.animation);
+			slot.adjustToDrink();
+		}, 1000);
 	};
 
-	this.stopSlot = function() {
-		clearInterval(this.animation);
+	this.adjustToDrink = function() {
 		this.isAnimating = false;
+		var quotient = Math.floor(this.bgPosition/258);
+		this.bgPosition = 86 * (3 * quotient + this.currentDrinkIndex);
 	};
 };

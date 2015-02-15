@@ -20,7 +20,7 @@
 		<div class="">
 			<ul class="slot-area vessel no-style-ul">
 				<li class="slot" ng-repeat="slot in slotmachine.slots">
-					<div class="slot-inner {{slot.currentDrink}}">{{slot.currentDrink}}</div>
+					<div class="slot-inner {{slot.currentDrink}}" ng-style="{'background-position-y': slot.bgPosition + 'px'}">{{slot.currentDrink}}</div>
 				</li>
 			</ul>
 

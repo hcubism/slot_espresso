@@ -200,15 +200,16 @@ table {
   padding: 0; }
 
 .slot-machine {
-  width: 80%;
+  width: 568px;
+  height: 818px;
   margin: 50px auto;
-  max-width: 760px;
-  background: grey; }
+  background: url("../imgs/machine-and-finished.png") no-repeat bottom right;
+  box-sizing: border-box;
+  padding-top: 129px; }
 
 .slot-area {
   margin: 0 auto;
-  background: pink;
-  width: 81.81818%;
+  width: 450px;
   position: relative; }
   .slot-area:before {
     content: '';
@@ -216,7 +217,6 @@ table {
     padding-top: 33.33333%; }
 
 .slots {
-  background: purple;
   position: absolute;
   left: 0;
   right: 0;
@@ -251,10 +251,7 @@ table {
   -webkit-flex-direction: column;
   -moz-flex-direction: column;
   flex-direction: column;
-  -ms-flex-direction: column;
-  color: white;
-  font-size: 18px;
-  border: 1px solid black; }
+  -ms-flex-direction: column; }
 
 .slot-inner {
   -webkit-box-flex: 1;
@@ -266,28 +263,54 @@ table {
   flex: 1;
   width: 100%;
   height: 100%;
-  background: url("../reel_normal.png") repeat-y 0 0;
-  -webkit-transition: background-position 0.5s ease-in;
-  -moz-transition: background-position 0.5s ease-in;
-  transition: background-position 0.5s ease-in; }
-  .slot-inner.coffee {
-    background-color: brown; }
-  .slot-inner.tea {
-    background-color: green; }
-  .slot-inner.espresso {
-    background-color: goldenrod; }
+  background: url("../imgs/slots.png") repeat-y 0 0;
+  -webkit-transition: background-position 0.5s linear;
+  -moz-transition: background-position 0.5s linear;
+  transition: background-position 0.5s linear; }
+  .slot-inner.vessel {
+    background-position-x: 0; }
+  .slot-inner.filter {
+    background-position-x: -150px; }
+  .slot-inner.ingredient {
+    background-position-x: -300px; }
 
 .slots-button {
   display: block;
-  margin: 0 auto; }
+  margin: 37px auto 0;
+  background-color: transparent;
+  border: none;
+  height: 70px;
+  font-size: 36px;
+  color: #55b34d;
+  position: relative;
+  left: -12px;
+  border-radius: 23px;
+  width: 195px;
+  box-shadow: 0 0 5px 5px #55b34d inset; }
+  .slots-button.inactive {
+    color: #b34d5e;
+    box-shadow: 0 0 5px 5px #b34d5e inset; }
 
 .cup {
-  margin: 0 auto;
-  width: 54.54545%;
-  background: blue; }
+  margin: 50px auto 0;
+  width: 280px;
+  position: relative;
+  opacity: 0;
+  background: url("../imgs/machine-and-finished.png") no-repeat -15px 0;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  transition: opacity 0.5s; }
   .cup:before {
     content: '';
     display: block;
     padding-top: 100%; }
+  .cup.filled {
+    opacity: 1; }
+  .cup.coffee {
+    background-position-y: 0; }
+  .cup.tea {
+    background-position-y: -300px; }
+  .cup.espresso {
+    background-position-y: -600px; }
 
 /*# sourceMappingURL=main.css.map */

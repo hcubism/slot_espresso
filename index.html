@@ -19,14 +19,15 @@
 		<div class="slot-area">
 			<ul class="slots vessel no-style-ul">
 				<li class="slot" ng-repeat="slot in slotmachine.slots">
-					<div class="slot-inner {{slot.currentDrink}}" ng-style="{'background-position-y': slot.bgPosition + 'px'}">{{slot.currentDrink}}</div>
+					<div class="slot-inner {{slot.partType}}" ng-style="{'background-position-y': slot.bgPosition + 'px'}"></div>
 				</li>
 			</ul>
 		</div>
 
-		<button class="slots-button" ng-click="slotmachine.doTheSpin()">Click me!</button>
+		<button class="slots-button" ng-class="{'inactive': slotmachine.isAnimating}" ng-click="slotmachine.doTheSpin()">Brew!</button>
 
-		<div class="cup {{slotmachine.currentDrink}}">{{slotmachine.currentDrink}}</div>
+		<div class="cup {{slotmachine.currentDrink}}" ng-class="{'filled': slotmachine.currentDrink}">
+		</div>
 
 	</div>
 

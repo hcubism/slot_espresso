@@ -19,27 +19,25 @@ var slotmachineApp = angular.module('slotmachineApp', []);
 
 slotmachineApp.controller('SlotMachineCtrl', ['$interval', '$timeout', function($interval, $timeout) {
 
-	this.slots = {
-		'vessel': new Slot('vessel'),
-		'filter': new Slot('filter'),
-		'ingredient': new Slot('ingredient')
-	};
+	this.slots = [new Slot('vessel'), new Slot('filter'), new Slot('ingredient')];
 
 	this.currentDrink = null;
+	this.isAnimating = false;
 
 	this.startSlots = function() {
-		for (var partType in this.slots) {
-			var slot = this.slots[partType];
-			slot.animateSlot($interval, $timeout);
+		this.isAnimating = true;
+		for (var i = 0; i < this.slots.length; i++) {
+			this.slots[i].animateSlot($interval, $timeout);
 		};
 	};
 
 	this.setDrinkIfAny = function() {
 		var temp = [];
-		for (var partType in this.slots) {
-			temp.push(this.slots[partType].currentDrink);
+		for (var i = 0; i < this.slots.length; i++) {
+			temp.push(this.slots[i].currentDrink);
 		}
 		this.currentDrink = Util.commonElement(temp);
+		this.isAnimating = false;
 	};
 
 	this.doTheSpin = function() {
@@ -47,12 +45,7 @@ slotmachineApp.controller('SlotMachineCtrl', ['$interval', '$timeout', function(
 		var machine = this;
 		$timeout(function() {
 			machine.setDrinkIfAny();
-		}, 5000);
-	};
-
-	this.showDrinkForSlot = function(index) {
-		var slotDrink = this.slots[index];
-		return this.DRINK_TYPES[slotDrink];
+		}, 3000);
 	};
 }]);
 
@@ -61,7 +54,6 @@ var Slot = function(partType) {
 	this.partType = partType;
 	this.currentDrink = null;
 	this.currentDrinkIndex = null;
-	this.isAnimating = false;
 	this.bgPosition = 0;
 
 	this.pickDrink = function() {
@@ -74,18 +66,17 @@ var Slot = function(partType) {
 		this.isAnimating = true;
 		var slot = this;
 		this.animation = ngInterval(function() {
-			slot.bgPosition += 100;
-		}, 100);
+			slot.bgPosition += 300;
+		}, 200);
 		timeout(function() {
 			slot.pickDrink();
 			ngInterval.cancel(slot.animation);
 			slot.adjustToDrink();
-		}, 1000);
+		}, 2000);
 	};
 
 	this.adjustToDrink = function() {
-		this.isAnimating = false;
-		var quotient = Math.floor(this.bgPosition/258);
-		this.bgPosition = 86 * (3 * quotient + this.currentDrinkIndex);
+		var quotient = Math.floor(this.bgPosition/300);
+		this.bgPosition = 150 * (3 * quotient + this.currentDrinkIndex);
 	};
 };

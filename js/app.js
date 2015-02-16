@@ -76,8 +76,8 @@ var Slot = function(partType) {
 		this.animation = ngInterval(function() {
 			slot.bgPosition += 100;
 		}, 100);
-		this.pickDrink();
 		timeout(function() {
+			slot.pickDrink();
 			ngInterval.cancel(slot.animation);
 			slot.adjustToDrink();
 		}, 1000);

@@ -44,7 +44,10 @@ slotmachineApp.controller('SlotMachineCtrl', ['$interval', '$timeout', function(
 
 	this.doTheSpin = function() {
 		this.startSlots();
-		this.setDrinkIfAny();
+		var machine = this;
+		$timeout(function() {
+			machine.setDrinkIfAny();
+		}, 5000);
 	};
 
 	this.showDrinkForSlot = function(index) {

@@ -194,25 +194,41 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-ul.no-style-ul {
+.no-style-ul {
   list-style: none;
   margin: 0;
   padding: 0; }
 
 .slot-machine {
-  width: 258px;
-  margin: 200px auto; }
+  width: 80%;
+  margin: 50px auto;
+  max-width: 760px;
+  background: grey; }
 
 .slot-area {
+  margin: 0 auto;
+  background: pink;
+  width: 81.81818%;
+  position: relative; }
+  .slot-area:before {
+    content: '';
+    display: block;
+    padding-top: 33.33333%; }
+
+.slots {
+  background: purple;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   display: -webkit-box;
   display: -moz-box;
   display: box;
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flexbox;
-  display: flex;
-  height: 86px;
-  background: grey; }
+  display: flex; }
 
 .slot {
   -webkit-box-flex: 1;
@@ -237,7 +253,8 @@ ul.no-style-ul {
   flex-direction: column;
   -ms-flex-direction: column;
   color: white;
-  font-size: 18px; }
+  font-size: 18px;
+  border: 1px solid black; }
 
 .slot-inner {
   -webkit-box-flex: 1;
@@ -252,12 +269,25 @@ ul.no-style-ul {
   background: url("../reel_normal.png") repeat-y 0 0;
   -webkit-transition: background-position 0.5s ease-in;
   -moz-transition: background-position 0.5s ease-in;
-  transition: background-position 0.5s linear; }
+  transition: background-position 0.5s ease-in; }
   .slot-inner.coffee {
     background-color: brown; }
   .slot-inner.tea {
     background-color: green; }
   .slot-inner.espresso {
     background-color: goldenrod; }
+
+.slots-button {
+  display: block;
+  margin: 0 auto; }
+
+.cup {
+  margin: 0 auto;
+  width: 54.54545%;
+  background: blue; }
+  .cup:before {
+    content: '';
+    display: block;
+    padding-top: 100%; }
 
 /*# sourceMappingURL=main.css.map */

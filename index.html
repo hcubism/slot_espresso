@@ -17,7 +17,7 @@
 <body>
 	<div class="slot-machine" ng-controller="SlotMachineCtrl as slotmachine">
 		<div class="slot-area">
-			<ul class="slots vessel no-style-ul">
+			<ul class="slots no-style-ul">
 				<li class="slot" ng-repeat="slot in slotmachine.slots">
 					<div class="slot-inner {{slot.partType}}" ng-style="{'background-position-y': slot.bgPosition + 'px'}"></div>
 				</li>
@@ -26,7 +26,7 @@
 
 		<button class="slots-button" ng-class="{'inactive': slotmachine.isAnimating}" ng-click="slotmachine.spinItUp()">Brew!</button>
 
-		<div class="cup {{slotmachine.currentDrink}}" ng-class="{'filled': slotmachine.currentDrink}">
+		<div class="cup {{slotmachine.drinkToShow}}" ng-class="{'filled': slotmachine.currentDrink}">
 		</div>
 
 	</div>

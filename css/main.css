@@ -202,6 +202,9 @@ table {
 	This mixin makes the parent element maintain an aspect ratio, regardless of
 	width. Useful for fluid-width.
  */
+body {
+  font-family: "Helvetica Neue", Helvetica, sans-serif; }
+
 .no-style-ul {
   list-style: none;
   margin: 0;

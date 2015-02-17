@@ -35,11 +35,11 @@ I *really* wanted to make this machine fluid-width, so it could fit different
 screen sizes. In fact, I almost did.
 
 The trouble arose with the background-positioning. The sprites could adjust in
-size with the use of `background-size`, but the scrolling and setting of the
-background makes use of pixels, which doesn't mix well with `background-size`.
-While `background-position` can also take percentage values, values exceeding
-100% start positioning from the bottom/right of an element, and thus work
-differently than how the 0-100% range works.
+size with the use of `background-size`, but scrolling and setting makes use of
+pixels, which doesn't mix well with `background-size`. While `background-position`
+can also take percentage values, values exceeding 100% start positioning from the
+bottom/right of an element, and thus work differently than how the 0-100% range
+works.
 
 Viewport values (vw, vh, etc.) could work, but they'd require quite a bit of
 tweaking.
@@ -61,3 +61,7 @@ ran out of time to figure this out.
 For data binding to work, I had to pass in `$interval` and `$timeout` to
 `Slot.animateSlot()`. I suppose I can avoid this by changing the Slot object to
 a Slot module. Need to learn how to do that...
+
+### Slot object parameters
+Ideally the Slot object would also take slot speed, height, and some other parameters
+for robustness.

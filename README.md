@@ -38,6 +38,9 @@ While `background-position` can also take percentage values, values exceeding
 100% start positioning from the bottom/right of an element, and thus work
 differently than how the 0-100% range works.
 
+Viewport values (vw, vh, etc.) could work, but they'd require quite a bit of
+tweaking.
+
 ### Espresso grounds versus coffee grounds
 They don't really look that different in real-life, so I added whole beans to
 the espresso grounds for distinguishing purposes.
@@ -54,4 +57,4 @@ ran out of time to figure this out.
 ### Passing $interval and $timeout to the Slot object
 For data binding to work, I had to pass in `$interval` and `$timeout` to
 `Slot.animateSlot()`. I suppose I can avoid this by changing the Slot object to
-a Slot module.
+a Slot module. Need to learn how to do that...

@@ -1,10 +1,18 @@
 # Espresso Bar Slot Machine
 
 ## Intro
-Here's a simple slot machine that gives out a drink when the slots match. The
-possible drinks are: coffee, tea, and espresso.
+Here's a simple slot machine that gives out a drink when the slots match up with
+the appropriate device, filter, and ingredient. The possible drinks are: coffee,
+tea, and espresso.
 
 ## Notes
+
+### Third-Party frameworks/libraries
+The following were used:
+* [AngularJS](http://angularjs.org) - for JS magic (also I wanted to try it out)
+* [Sass](http://sass-lang.com) - for fast CSS writing
+* [normalize.css](http://necolas.github.io/normalize.css/) - for defining basic cross-browser styles (the Sass version is used here)
+* [Bourbon](http://bourbon.io/) - for vendor prefix mixins
 
 ### Use of AngularJS
 This is my first time using AngularJS. I thought I would try it out. Turned out

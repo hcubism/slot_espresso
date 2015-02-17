@@ -1,3 +1,4 @@
+/** Utility functions */
 var Util = {
 	'getRandomInt': function(min, max) {
 		return Math.floor(Math.random() * (max - min)) + min;
@@ -12,11 +13,9 @@ var Util = {
 	}
 };
 
-
-var DRINK_TYPES = ['coffee', 'tea', 'espresso'];
-
 var slotmachineApp = angular.module('slotmachineApp', []);
 
+/** The controller for the slot machine */
 slotmachineApp.controller('SlotMachineCtrl', ['$interval', '$timeout', function($interval, $timeout) {
 
 	this.slots = [new Slot('vessel'), new Slot('filter'), new Slot('ingredient')];
@@ -40,9 +39,12 @@ slotmachineApp.controller('SlotMachineCtrl', ['$interval', '$timeout', function(
 		this.isAnimating = false;
 	};
 
-	this.doTheSpin = function() {
+	this.spinItUp = function() {
 		this.startSlots();
 		var machine = this;
+		// Ideally, the machine will listen for some kind of response from the slots,
+		// rather than a timeout, before possibly putting out a drink.
+		//  Haven't gotten around to implementing that though.
 		$timeout(function() {
 			machine.setDrinkIfAny();
 		}, 3000);
@@ -50,20 +52,24 @@ slotmachineApp.controller('SlotMachineCtrl', ['$interval', '$timeout', function(
 }]);
 
 
+/** The Slot object */
 var Slot = function(partType) {
+	this.drinkTypes = ['coffee', 'tea', 'espresso'];
+
 	this.partType = partType;
 	this.currentDrink = null;
+	// currentDrinkIndex is for figuring out
+	// background position when a drink is picked
 	this.currentDrinkIndex = null;
 	this.bgPosition = 0;
 
 	this.pickDrink = function() {
 		var drinkIndex = Util.getRandomInt(0, 3);
-		this.currentDrink = DRINK_TYPES[drinkIndex];
+		this.currentDrink = this.drinkTypes[drinkIndex];
 		this.currentDrinkIndex = drinkIndex;
 	};
 
 	this.animateSlot = function(ngInterval, timeout) {
-		this.isAnimating = true;
 		var slot = this;
 		this.animation = ngInterval(function() {
 			slot.bgPosition += 300;
@@ -76,7 +82,7 @@ var Slot = function(partType) {
 	};
 
 	this.adjustToDrink = function() {
-		var quotient = Math.floor(this.bgPosition/300);
+		var quotient = Math.floor(this.bgPosition/450);
 		this.bgPosition = 150 * (3 * quotient + this.currentDrinkIndex);
 	};
 };

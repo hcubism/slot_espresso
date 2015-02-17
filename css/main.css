@@ -194,18 +194,26 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+/**
+	This makes an element fill the entire parent, even when the parent doesn't
+	have a defined width/height.
+ */
+/**
+	This mixin makes the parent element maintain an aspect ratio, regardless of
+	width. Useful for fluid-width.
+ */
 .no-style-ul {
   list-style: none;
   margin: 0;
   padding: 0; }
 
 .slot-machine {
+  box-sizing: border-box;
+  margin: 50px auto;
   width: 568px;
   height: 818px;
-  margin: 50px auto;
-  background: url("../imgs/machine-and-finished.png") no-repeat bottom right;
-  box-sizing: border-box;
-  padding-top: 129px; }
+  padding-top: 129px;
+  background: url("../imgs/machine-and-finished.png") no-repeat bottom right; }
 
 .slot-area {
   margin: 0 auto;
@@ -217,18 +225,18 @@ table {
     padding-top: 33.33333%; }
 
 .slots {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
   display: -webkit-box;
   display: -moz-box;
   display: box;
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0; }
 
 .slot {
   -webkit-box-flex: 1;
@@ -238,31 +246,14 @@ table {
   -moz-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  display: -webkit-box;
-  display: -moz-box;
-  display: box;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  box-orient: vertical;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  flex-direction: column;
-  -ms-flex-direction: column; }
+  position: relative; }
 
 .slot-inner {
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  -webkit-flex: 1;
-  -moz-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
   background: url("../imgs/slots.png") repeat-y 0 0;
   -webkit-transition: background-position 0.5s linear;
   -moz-transition: background-position 0.5s linear;
@@ -277,16 +268,17 @@ table {
 .slots-button {
   display: block;
   margin: 37px auto 0;
-  background-color: transparent;
-  border: none;
+  width: 195px;
   height: 70px;
-  font-size: 36px;
-  color: #55b34d;
   position: relative;
   left: -12px;
+  font-size: 36px;
+  border: none;
+  outline: none;
   border-radius: 23px;
-  width: 195px;
-  box-shadow: 0 0 5px 5px #55b34d inset; }
+  box-shadow: 0 0 5px 5px #55b34d inset;
+  background-color: transparent;
+  color: #55b34d; }
   .slots-button.inactive {
     color: #b34d5e;
     box-shadow: 0 0 5px 5px #b34d5e inset; }
@@ -294,9 +286,7 @@ table {
 .cup {
   margin: 50px auto 0;
   width: 280px;
-  position: relative;
   opacity: 0;
-  background: url("../imgs/machine-and-finished.png") no-repeat -15px 0;
   -webkit-transition: opacity 0.5s;
   -moz-transition: opacity 0.5s;
   transition: opacity 0.5s; }
@@ -305,6 +295,7 @@ table {
     display: block;
     padding-top: 100%; }
   .cup.filled {
+    background: url("../imgs/machine-and-finished.png") no-repeat -15px 0;
     opacity: 1; }
   .cup.coffee {
     background-position-y: 0; }
